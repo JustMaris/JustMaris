@@ -27,7 +27,7 @@ jobs:
       # isometric calendar with neighbouring text, so it is not usable.
 
       - name: Activity panel
-        uses: lowlighter/metrics@v3.34
+        uses: lowlighter/metrics@v4
         with:
           token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
           user: JustMaris
@@ -39,7 +39,7 @@ jobs:
           committer_message: "chore: refresh metrics-activity.svg"
 
       - name: Calendar panel
-        uses: lowlighter/metrics@v3.34
+        uses: lowlighter/metrics@v4
         with:
           token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
           user: JustMaris
