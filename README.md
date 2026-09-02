@@ -62,10 +62,5 @@ I also spend time around the Apache data stack — Iceberg, Superset, Kafka conn
 
 I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub org and a [tech + music blog](https://drumandbytes.com) where I write about self-hosting, data engineering and the odd side project.
 
-<!-- commits.json is refreshed daily by .github/workflows/stats.yml -->
-<p>
-  <img src="https://img.shields.io/endpoint?style=flat-square&url=https%3A%2F%2Fraw.githubusercontent.com%2FJustMaris%2FJustMaris%2Fmain%2F.github%2Fbadges%2Fcommits.json" alt="Lifetime public commits" />
-</p>
-
 <!-- github-metrics.svg is regenerated daily by .github/workflows/metrics.yml -->
-<img src="./github-metrics.svg" alt="GitHub activity, repositories, commit calendar and languages" width="480" />
+<img src="./github-metrics.svg" alt="GitHub activity, commit calendar and languages" />
