@@ -1,0 +1,54 @@
+name: Stats
+
+on:
+  schedule:
+    - cron: "41 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/stats.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  commits-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Count lifetime public commits
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # GitHub's commit search indexes public commits linked to the account.
+          # True lifetime (including private repos) is not exposed by any API,
+          # so this is deliberately labelled "public".
+          count=$(gh api -H "Accept: application/vnd.github+json" \
+            "/search/commits?q=author:JustMaris&per_page=1" --jq '.total_count')
+          printf 'lifetime public commits: %s\n' "$count"
+
+          pretty=$(printf "%'d" "$count")
+          mkdir -p .github/badges
+          cat > .github/badges/commits.json <<EOF
+          {
+            "schemaVersion": 1,
+            "label": "commits · public · lifetime",
+            "message": "${pretty}",
+            "color": "1f6feb"
+          }
+          EOF
+
+      - name: Commit badge if changed
+        run: |
+          set -euo pipefail
+          if [[ -n "$(git status --porcelain .github/badges/commits.json)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .github/badges/commits.json
+            git commit -m "chore: refresh lifetime commits badge"
+            git push
+          else
+            echo "No change."
+          fi
