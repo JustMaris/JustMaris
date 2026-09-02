@@ -1,0 +1,48 @@
+name: Metrics
+
+on:
+  # Rebuild the metrics image every day
+  schedule:
+    - cron: "27 3 * * *"
+  # ...and let me trigger it by hand
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/metrics.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate github-metrics.svg
+        uses: lowlighter/metrics@v3.34
+        with:
+          # Fine-grained or classic PAT stored as a repo secret.
+          # Falls back to GITHUB_TOKEN for a basic (public-only) render.
+          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          user: JustMaris
+          filename: github-metrics.svg
+          template: classic
+
+          # --- base sections ---
+          base: header, activity, community, repositories, metadata
+          base_indepth: yes
+          config_timezone: Europe/Tallinn
+
+          # --- extras that make it feel fuller ---
+          plugin_lines: yes
+          plugin_languages: yes
+          plugin_languages_details: bytes-size, percentage
+          plugin_languages_limit: 8
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_days: 0
+
+          # commit the generated SVG back to this repo
+          output_action: commit
+          committer_message: "chore: refresh github-metrics.svg"
