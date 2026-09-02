@@ -1,7 +1,7 @@
 name: Metrics
 
 on:
-  # Rebuild the metrics image every day
+  # Rebuild the metrics images every day
   schedule:
     - cron: "27 3 * * *"
   # ...and let me trigger it by hand
@@ -17,24 +17,45 @@ jobs:
   metrics:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate github-metrics.svg
+      - uses: actions/checkout@v4
+
+      # Two separate panels so the README can place them side by side.
+      # A single metrics image with `config_display: columns` overlaps the
+      # isometric calendar with neighbouring text, so it is not usable.
+
+      - name: Activity panel
         uses: lowlighter/metrics@v3.34
         with:
-          # Fine-grained or classic PAT stored as a repo secret.
-          # Falls back to GITHUB_TOKEN for a basic (public-only) render.
           token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
           user: JustMaris
-          filename: github-metrics.svg
+          filename: metrics-activity.svg
           template: classic
           config_timezone: Europe/Tallinn
-
-          # Just activity + the commit calendar. Single column on purpose:
-          # metrics' `columns` display overlaps the isometric calendar with
-          # neighbouring text, so it is not usable here. This is short anyway.
           base: activity
+          output_action: none
+
+      - name: Calendar panel
+        uses: lowlighter/metrics@v3.34
+        with:
+          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          user: JustMaris
+          filename: metrics-calendar.svg
+          template: classic
+          config_timezone: Europe/Tallinn
+          base: ""
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
+          output_action: none
 
-          # commit the generated SVG back to this repo
-          output_action: commit
-          committer_message: "chore: refresh github-metrics.svg"
+      - name: Commit panels if changed
+        run: |
+          set -euo pipefail
+          if [[ -n "$(git status --porcelain metrics-activity.svg metrics-calendar.svg)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add metrics-activity.svg metrics-calendar.svg
+            git commit -m "chore: refresh metrics panels"
+            git push
+          else
+            echo "No change."
+          fi
