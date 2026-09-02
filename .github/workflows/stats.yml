@@ -15,7 +15,7 @@ jobs:
   commits-badge:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v4
 
       - name: Count lifetime public commits
         env:
@@ -29,7 +29,7 @@ jobs:
             "/search/commits?q=author:JustMaris&per_page=1" --jq '.total_count')
           printf 'lifetime public commits: %s\n' "$count"
 
-          pretty=$(printf "%'d" "$count")
+          pretty=$(echo "$count" | sed -E ':a;s/([0-9])([0-9]{3})($|,)/\1,\2\3/;ta')
           mkdir -p .github/badges
           cat > .github/badges/commits.json <<EOF
           {
