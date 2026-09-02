@@ -1,0 +1,12 @@
+version: 2
+updates:
+
+  # Keeps the Actions used by the metrics workflow current.
+  # Grouped into one PR so related bumps land together.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions:
+        patterns: ["*"]
