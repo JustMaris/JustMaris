@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      # Left panel: stats + language cards -> profile-summary-card-output/transparent/*.svg
+      # README panels -> profile-summary-card-output/transparent/*.svg
       # (transparent theme reads cleanly against both README light and dark backgrounds)
       - name: Profile summary cards
         uses: vn7n24fzkq/github-profile-summary-cards@d9632798b299e9ad6940449a859c30742eb5b549 # v0.12.0
@@ -34,19 +34,10 @@ jobs:
           THEME: transparent
           AUTO_PUSH: false # the job commits everything once, at the end
 
-      # Right panel: contribution-graph snake -> snake.svg (light) + snake-dark.svg
-      - name: Contribution snake
-        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3
-        with:
-          github_user_name: JustMaris
-          outputs: |
-            snake.svg?palette=github-light
-            snake-dark.svg?palette=github-dark
-
       - name: Commit refreshed images
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile-summary-card-output snake.svg snake-dark.svg
+          git add profile-summary-card-output
           git diff --quiet --cached || git commit -m "chore: refresh profile metrics"
           git push
