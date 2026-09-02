@@ -71,5 +71,10 @@ I also spend time around the Apache data stack — Iceberg, Superset, Kafka conn
 
 I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub org and a [tech + music blog](https://drumandbytes.com) where I write about self-hosting, data engineering and the odd side project.
 
-<!-- github-metrics.svg is regenerated daily by .github/workflows/metrics.yml -->
-<img src="./github-metrics.svg" alt="GitHub activity, commit calendar and languages" />
+<!-- panels regenerated daily by .github/workflows/metrics.yml -->
+<table>
+  <tr>
+    <td valign="top"><img src="./metrics-activity.svg" width="420" alt="GitHub activity" /></td>
+    <td valign="top"><img src="./metrics-calendar.svg" width="420" alt="Commit calendar" /></td>
+  </tr>
+</table>

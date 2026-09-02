@@ -16,9 +16,12 @@ permissions:
 jobs:
   metrics:
     runs-on: ubuntu-latest
+    # Steps run in order; each commits its own file, so the second is based on
+    # the first's push.
+    concurrency:
+      group: metrics
+      cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v4
-
       # Two separate panels so the README can place them side by side.
       # A single metrics image with `config_display: columns` overlaps the
       # isometric calendar with neighbouring text, so it is not usable.
@@ -32,7 +35,8 @@ jobs:
           template: classic
           config_timezone: Europe/Tallinn
           base: activity
-          output_action: none
+          output_action: commit
+          committer_message: "chore: refresh metrics-activity.svg"
 
       - name: Calendar panel
         uses: lowlighter/metrics@v3.34
@@ -45,17 +49,5 @@ jobs:
           base: ""
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
-          output_action: none
-
-      - name: Commit panels if changed
-        run: |
-          set -euo pipefail
-          if [[ -n "$(git status --porcelain metrics-activity.svg metrics-calendar.svg)" ]]; then
-            git config user.name  "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add metrics-activity.svg metrics-calendar.svg
-            git commit -m "chore: refresh metrics panels"
-            git push
-          else
-            echo "No change."
-          fi
+          output_action: commit
+          committer_message: "chore: refresh metrics-calendar.svg"
