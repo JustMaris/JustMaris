@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate github-metrics.svg
-        uses: lowlighter/metrics@v3.34
+        uses: lowlighter/metrics@v4
         with:
           # Fine-grained or classic PAT stored as a repo secret.
           # Falls back to GITHUB_TOKEN for a basic (public-only) render.
