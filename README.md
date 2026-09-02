@@ -74,7 +74,7 @@ I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub o
 <!-- panels regenerated daily by .github/workflows/metrics.yml -->
 <table>
   <tr>
-    <td valign="top"><img src="./metrics-activity.svg" width="420" alt="GitHub activity" /></td>
-    <td valign="top"><img src="./metrics-calendar.svg" width="420" alt="Commit calendar" /></td>
+    <td width="50%" valign="top"><img src="./metrics-activity.svg" width="100%" alt="GitHub activity and languages" /></td>
+    <td width="50%" valign="top"><img src="./metrics-calendar.svg" width="100%" alt="Commit calendar" /></td>
   </tr>
 </table>
