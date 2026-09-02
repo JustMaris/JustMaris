@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=15&pause=1200&color=8B949E&center=true&vCenter=true&width=360&lines=Challenge+drives+innovation" alt="Challenge drives innovation" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=15&pause=1200&color=8B949E&center=true&vCenter=true&width=480&lines=Challenge+drives+innovation" alt="Challenge drives innovation" />
 </p>
 
 <p align="center">
@@ -62,14 +62,3 @@ I also spend time around the Apache data stack — Iceberg, Superset, Kafka conn
 ### Drum and Bytes
 
 I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub org and a [tech + music blog](https://drumandbytes.com) where I write about self-hosting, data engineering and the odd side project.
-
-### GitHub
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=JustMaris&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&theme=github_dark" />
-  <img src="https://github-readme-stats.vercel.app/api?username=JustMaris&show_icons=true&hide_border=true&include_all_commits=true&count_private=true" height="160" alt="Māris's GitHub stats" />
-</picture>
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api/top-langs/?username=JustMaris&layout=compact&hide_border=true&langs_count=8&hide=handlebars&theme=github_dark" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JustMaris&layout=compact&hide_border=true&langs_count=8&hide=handlebars" height="160" alt="Top languages" />
-</picture>
