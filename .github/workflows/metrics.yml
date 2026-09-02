@@ -29,7 +29,9 @@ jobs:
           config_timezone: Europe/Tallinn
 
           # --- base sections ---
-          base: header, activity, community, repositories
+          # No 'header'/'community': the profile page already shows name, join
+          # date, followers, following, stars and orgs. Keep this to dev stats.
+          base: activity, repositories
           base_indepth: yes
 
           # --- commit calendar (isometric, full year) ---
@@ -41,11 +43,10 @@ jobs:
           plugin_languages_details: bytes-size, percentage
           plugin_languages_limit: 8
 
-          # --- lines changed & recent activity ---
+          # --- lines changed ---
           plugin_lines: yes
-          plugin_activity: yes
-          plugin_activity_limit: 5
-          plugin_activity_days: 0
+          # plugin_activity is intentionally off: upstream bug throws on some
+          # event actors, and the native profile already shows recent activity.
 
           # commit the generated SVG back to this repo
           output_action: commit
