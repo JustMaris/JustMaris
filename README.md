@@ -72,17 +72,11 @@ I also spend time around the Apache data stack — Iceberg, Superset, Kafka conn
 I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub org and a [tech + music blog](https://drumandbytes.com) where I write about self-hosting, data engineering and the odd side project.
 
 <!-- panels regenerated daily by .github/workflows/metrics.yml -->
+<img src="./profile-summary-card-output/transparent/0-profile-details.svg" width="100%" alt="Profile overview and contribution history" />
+
 <table>
   <tr>
-    <td width="50%" valign="top">
-      <img src="./profile-summary-card-output/transparent/3-stats.svg" width="100%" alt="GitHub stats" /><br />
-      <img src="./profile-summary-card-output/transparent/1-repos-per-language.svg" width="100%" alt="Top languages" />
-    </td>
-    <td width="50%" valign="top">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="./snake-dark.svg" />
-        <img src="./snake.svg" width="100%" alt="Contribution graph snake animation" />
-      </picture>
-    </td>
+    <td width="50%" valign="top"><img src="./profile-summary-card-output/transparent/3-stats.svg" width="100%" alt="GitHub stats" /></td>
+    <td width="50%" valign="top"><img src="./profile-summary-card-output/transparent/1-repos-per-language.svg" width="100%" alt="Top languages by repo" /></td>
   </tr>
 </table>
