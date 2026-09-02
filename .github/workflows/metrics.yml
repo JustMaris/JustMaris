@@ -28,12 +28,14 @@ jobs:
           template: classic
           config_timezone: Europe/Tallinn
 
-          # Deliberately just one thing: the isometric commit calendar.
-          # Everything else (name, followers, repo counts, languages, activity)
-          # is already on the profile page or was mostly zeros / noise.
-          base: ""
+          # Two columns: activity breakdown on the left, commit calendar on the
+          # right. No 'header'/'community'/'repositories' — that was the noise.
+          config_display: columns
+          config_order: base.activity, isocalendar
+          base: activity
+          base_indepth: yes
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
+          plugin_isocalendar_duration: half-year
 
           # commit the generated SVG back to this repo
           output_action: commit
