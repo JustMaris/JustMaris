@@ -28,14 +28,12 @@ jobs:
           template: classic
           config_timezone: Europe/Tallinn
 
-          # Two columns: activity breakdown on the left, commit calendar on the
-          # right. No 'header'/'community'/'repositories' — that was the noise.
-          config_display: columns
-          config_order: base.activity, isocalendar
+          # Just activity + the commit calendar. Single column on purpose:
+          # metrics' `columns` display overlaps the isometric calendar with
+          # neighbouring text, so it is not usable here. This is short anyway.
           base: activity
-          base_indepth: yes
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
+          plugin_isocalendar_duration: full-year
 
           # commit the generated SVG back to this repo
           output_action: commit
