@@ -1,7 +1,7 @@
 name: Metrics
 
 on:
-  # Rebuild the metrics images every day
+  # Rebuild the README panels every day
   schedule:
     - cron: "27 3 * * *"
   # ...and let me trigger it by hand
@@ -16,42 +16,37 @@ permissions:
 jobs:
   metrics:
     runs-on: ubuntu-latest
-    # Steps run in order; each commits its own file, so the second is based on
-    # the first's push.
     concurrency:
       group: metrics
       cancel-in-progress: false
     steps:
-      # Two separate panels so the README can place them side by side.
-      # A single metrics image with `config_display: columns` overlaps the
-      # isometric calendar with neighbouring text, so it is not usable.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - name: Activity panel
-        uses: lowlighter/metrics@v4
+      # Left panel: stats + language cards -> profile-summary-card-output/transparent/*.svg
+      # (transparent theme reads cleanly against both README light and dark backgrounds)
+      - name: Profile summary cards
+        uses: vn7n24fzkq/github-profile-summary-cards@d9632798b299e9ad6940449a859c30742eb5b549 # v0.12.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
-          user: JustMaris
-          filename: metrics-activity.svg
-          template: classic
-          config_timezone: Europe/Tallinn
-          base: activity
-          base_indepth: yes
-          plugin_languages: yes
-          plugin_languages_details: percentage
-          plugin_languages_limit: 6
-          output_action: commit
-          committer_message: "chore: refresh metrics-activity.svg"
+          USERNAME: JustMaris
+          UTC_OFFSET: 2 # Europe/Tallinn
+          THEME: transparent
+          AUTO_PUSH: false # the job commits everything once, at the end
 
-      - name: Calendar panel
-        uses: lowlighter/metrics@v4
+      # Right panel: contribution-graph snake -> snake.svg (light) + snake-dark.svg
+      - name: Contribution snake
+        uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3
         with:
-          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
-          user: JustMaris
-          filename: metrics-calendar.svg
-          template: classic
-          config_timezone: Europe/Tallinn
-          base: ""
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-          output_action: commit
-          committer_message: "chore: refresh metrics-calendar.svg"
+          github_user_name: JustMaris
+          outputs: |
+            snake.svg?palette=github-light
+            snake-dark.svg?palette=github-dark
+
+      - name: Commit refreshed images
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile-summary-card-output snake.svg snake-dark.svg
+          git diff --quiet --cached || git commit -m "chore: refresh profile metrics"
+          git push

@@ -74,7 +74,15 @@ I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub o
 <!-- panels regenerated daily by .github/workflows/metrics.yml -->
 <table>
   <tr>
-    <td width="50%" valign="top"><img src="./metrics-activity.svg" width="100%" alt="GitHub activity and languages" /></td>
-    <td width="50%" valign="top"><img src="./metrics-calendar.svg" width="100%" alt="Commit calendar" /></td>
+    <td width="50%" valign="top">
+      <img src="./profile-summary-card-output/transparent/3-stats.svg" width="100%" alt="GitHub stats" /><br />
+      <img src="./profile-summary-card-output/transparent/1-repos-per-language.svg" width="100%" alt="Top languages" />
+    </td>
+    <td width="50%" valign="top">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./snake-dark.svg" />
+        <img src="./snake.svg" width="100%" alt="Contribution graph snake animation" />
+      </picture>
+    </td>
   </tr>
 </table>
