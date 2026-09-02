@@ -28,26 +28,12 @@ jobs:
           template: classic
           config_timezone: Europe/Tallinn
 
-          # Wide, two-column layout: activity on the left,
-          # languages + commit calendar on the right.
-          config_display: columns
-          config_order: base.activity, languages, isocalendar
-
-          # No 'header'/'community': the profile page already shows name, join
-          # date, followers, following, stars and orgs. Keep this to dev stats.
-          base: activity
-          base_indepth: yes
-
-          # --- commit calendar (isometric) ---
+          # Deliberately just one thing: the isometric commit calendar.
+          # Everything else (name, followers, repo counts, languages, activity)
+          # is already on the profile page or was mostly zeros / noise.
+          base: ""
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
-
-          # --- languages across all repos ---
-          plugin_languages: yes
-          plugin_languages_details: percentage
-          plugin_languages_limit: 6
-          # plugin_activity is intentionally off: upstream bug throws on some
-          # event actors, and the native profile already shows recent activity.
+          plugin_isocalendar_duration: full-year
 
           # commit the generated SVG back to this repo
           output_action: commit
