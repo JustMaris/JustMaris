@@ -1,10 +1,8 @@
 name: Metrics
 
 on:
-  # Rebuild the README panels every day
   schedule:
     - cron: "27 3 * * *"
-  # ...and let me trigger it by hand
   workflow_dispatch:
   push:
     branches: [main]
@@ -22,8 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      # README panels -> profile-summary-card-output/transparent/*.svg
-      # (transparent theme reads cleanly against both README light and dark backgrounds)
+      # -> profile-summary-card-output/transparent/*.svg; transparent suits light and dark READMEs
       - name: Profile summary cards
         uses: vn7n24fzkq/github-profile-summary-cards@d9632798b299e9ad6940449a859c30742eb5b549 # v0.12.0
         env:
