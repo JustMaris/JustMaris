@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://www.linkedin.com/in/marispopens/"><img src="https://img.shields.io/badge/LinkedIn-marispopens-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="https://drumandbytes.com"><img src="https://img.shields.io/badge/Blog-Drum%20and%20Bytes-1DB954?style=flat-square&logo=ghost&logoColor=white" alt="Blog" /></a>
+  <a href="https://drumandbytes.com/?ref=justmaris-readme"><img src="https://img.shields.io/badge/Blog-Drum%20and%20Bytes-1DB954?style=flat-square&logo=ghost&logoColor=white" alt="Blog" /></a>
   <a href="https://buymeacoffee.com/justmaris"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-justmaris-FFDD00?style=flat-square&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee" /></a>
 </p>
 
@@ -69,7 +69,7 @@ I also spend time around the Apache data stack — Iceberg, Superset, Kafka conn
 
 ### Drum and Bytes
 
-I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub org and a [tech + music blog](https://drumandbytes.com) where I write about self-hosting, data engineering and the odd side project.
+I run [**Drum and Bytes**](https://github.com/drumandbytes) — a small GitHub org and a [tech + music blog](https://drumandbytes.com/?ref=justmaris-readme) where I write about self-hosting, data engineering and the odd side project.
 
 <!-- panels regenerated daily by .github/workflows/metrics.yml -->
 <img src="./profile-summary-card-output/transparent/0-profile-details.svg" width="100%" alt="Profile overview and contribution history" />
